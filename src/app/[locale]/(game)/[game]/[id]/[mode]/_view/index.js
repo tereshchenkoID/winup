@@ -32,7 +32,7 @@ const Section = ({
 }) => {
   const t = useTranslations()
   const router = useRouter()
-  const { isAuth, level, session } = useUser()
+  const { isAuth, level } = useUser()
   const [toggle, setToggle] = useState(false)
   const { openModal } = useModal()
 
@@ -104,10 +104,7 @@ const Section = ({
                 />
               </>
             }
-            {
-              session !== 'tma' &&
-              <FullScreen />
-            }
+            <FullScreen />
             {
               isAuth &&
               <Action

@@ -23,7 +23,7 @@ const AccountMenu = ({ setToggle, bonuses }) => {
   const t = useTranslations()
   const router = useRouter()
   const setUser = useUserStore((state) => state.setUser)
-  const { credits, profile, username, session, level, currency, payements } = useUser()
+  const { credits, profile, username, level, currency, payements } = useUser()
 
   const DATA = [
     ROUTES_USER.profile,
@@ -186,16 +186,13 @@ const AccountMenu = ({ setToggle, bonuses }) => {
           }
         </menu>
       </div>
-      {
-        session !== 'tma' &&
-        <div className={style.bottom}>
-          <Action
-            classes={['primary', 'wide', 'md']}
-            placeholder={t('logout')}
-            onChange={handleLogout}
-          />
-        </div>
-      }
+      <div className={style.bottom}>
+        <Action
+          classes={['primary', 'wide', 'md']}
+          placeholder={t('logout')}
+          onChange={handleLogout}
+        />
+      </div>
     </div>
   )
 }
