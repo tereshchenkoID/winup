@@ -1,0 +1,39 @@
+.block {
+  position: relative;
+}
+
+.dropdown {
+  display: grid;
+  grid-template-columns: repeat(2, rem(60px));
+  align-items: center;
+  gap: var(--gap-default);
+  position: absolute;
+  inset-block-start: calc(100% + var(--gap-default));
+  inset-inline-end: 0;
+  padding: var(--gap-default);
+  border: rem(1px) solid var(--tertiary-disabled);
+  border-radius: var(--border-radius-6);
+  background-color: rgb(var(--material));
+}
+
+.toggle,
+.icon {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.toggle {
+  @include size(rem(32px));
+
+  display: block;
+  border: rem(2px) solid var(--tertiary-disabled);
+}
+
+.icon {
+  @include size(rem(20px));
+}
+
+.image {
+  height: 100%;
+  object-fit: cover;
+}

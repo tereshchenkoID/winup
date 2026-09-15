@@ -1,0 +1,11 @@
+.block {
+  &.favorites {
+    &:empty {
+      display: none;
+    }
+  }
+}
+
+.title {
+  line-height: 1;
+}

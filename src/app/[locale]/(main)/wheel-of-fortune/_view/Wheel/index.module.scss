@@ -1,0 +1,90 @@
+.block {
+  --wheel-size: 500;
+
+  @include flex(center, center);
+
+  position: relative;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  max-width: calc(var(--wheel-size) * rem(1px));
+  container-type: inline-size;
+  contain: layout;
+}
+
+.frame {
+  @include size(100%);
+  @include flex;
+
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.canvas {
+  @include size(100%);
+
+  display: block;
+  position: relative;
+  border-radius: 50%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+.indicator {
+  @include size(calc(80 / var(--wheel-size) * 100cqw), calc(105 / var(--wheel-size) * 100cqw));
+
+  position: absolute;
+  inset-block-start: 0;
+  z-index: $z-index-1;
+  transform: translateY(-55%);
+  pointer-events: none;
+
+  img {
+    object-fit: cover;
+    height: 100%;
+  }
+}
+
+.spin {
+  @include size(calc(132 / var(--wheel-size) * 100cqw));
+  @include flex(center, center);
+  @include transition;
+
+  position: absolute;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+
+  &::after,
+  &::before {
+    position: absolute;
+    border-radius: 50%;
+    content: '';
+  }
+
+  &::after {
+    inset: var(--gap-default);
+    background: radial-gradient(50% 50% at 50% 50%, #00313A 0%, #021417 42%, #040708 80%, #000 100%);
+  }
+
+  &::before {
+    inset: 0;
+    background: radial-gradient(50% 50% at 50% 50%, #713900 0%, #A95B00 76%, #FFF08A 90%, #F0A40C 97%, #6F3500 100%);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.logo {
+  @include size(50%, auto);
+
+  position: relative;
+  margin: auto;
+  z-index: $z-index-1;
+}

@@ -1,0 +1,126 @@
+.block {
+  --slide-width: 100%;
+  --slide-spacing: var(--gap-default);
+  --slide-count: 3;
+
+  @include mob-m {
+    --slide-count: 4;
+  }
+
+  @include tab-s {
+    --slide-count: 5;
+  }
+
+  @include tab-m {
+    --slide-count: 6;
+  }
+
+  @include tab-l {
+    --slide-count: 7;
+  }
+
+  @include desk-s {
+    --slide-count: 6;
+  }
+
+  &.numeric {
+    --slide-width: 100%;
+    --slide-spacing: 1.25rem; // 20px
+    --slide-count: 3;
+
+    @include mob-m {
+      --slide-count: 4;
+    }
+
+    @include tab-s {
+      --slide-count: 5;
+    }
+
+    @include desk-m {
+      --slide-count: 6;
+    }
+
+    .slide {
+      flex: 0 0 calc((var(--slide-width) + var(--slide-spacing)) / var(--slide-count));
+      padding-inline: var(--slide-spacing) 0;
+      max-width: calc((var(--slide-width) + var(--slide-spacing)) / var(--slide-count));
+      container-type: inline-size;
+    }
+  }
+}
+
+.slide {
+  flex: 0 0 calc((var(--slide-width) + var(--slide-spacing)) / var(--slide-count));
+  position: relative;
+  max-width: calc((var(--slide-width) + var(--slide-spacing)) / var(--slide-count));
+  padding-inline-end: var(--slide-spacing);
+
+  &:last-child {
+    padding-inline-end: 0;
+    flex: 0 0 calc(((100% + var(--slide-spacing)) / var(--slide-count)) - var(--slide-spacing));
+    max-width: calc(((100% + var(--slide-spacing)) / var(--slide-count)) - var(--slide-spacing));
+  }
+}
+
+.index {
+  @include flex(center);
+
+  user-select: none;
+  position: absolute;
+  inset-block-end: rem(-1px);
+  inset-inline-start: 0;
+  width: var(--slide-spacing);
+  z-index: $z-index-2;
+  transform: translateX(15%);
+  font-size: 30cqw;
+  font-weight: var(--typography-bold);
+  line-height: 1;
+  text-align: center;
+  color: rgb(var(--link));
+  pointer-events: none;
+  letter-spacing: rem(-4px);
+
+  @include tab-s {
+    letter-spacing: rem(-6px);
+  }
+}
+
+.skeleton {
+  --skeleton-rows: 1;
+
+  &.top {
+    --skeleton-cols: 1;
+    --skeleton-height: 2rem; // 32px
+
+    margin-block-end: var(--gap-default);
+  }
+
+  &.bottom {
+    --skeleton-cols: 3;
+    --skeleton-height: 8.75rem; // 140px
+
+    @include mob-m {
+      --skeleton-cols: 4;
+    }
+
+    @include tab-s {
+      --skeleton-cols: 5;
+      --skeleton-height: 9.68rem; // 155px
+    }
+
+    @include tab-m {
+      --skeleton-cols: 6;
+      --skeleton-height: 10.625rem; // 170px
+    }
+
+    @include tab-l {
+      --skeleton-cols: 7;
+      --skeleton-height: 8.75rem; // 140px
+    }
+
+    @include desk-s {
+      --skeleton-cols: 6;
+      --skeleton-height: 10.93rem; // 175px
+    }
+  }
+}

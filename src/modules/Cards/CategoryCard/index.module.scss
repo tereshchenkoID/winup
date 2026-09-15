@@ -1,0 +1,29 @@
+.block {
+  @include flex($align-items: center);
+
+  gap: var(--gap-6);
+  padding: var(--gap-default) var(--gap-16);
+  border: rem(1px) solid var(--primary-hover);
+  border-radius: var(--border-radius-full);
+  min-height: rem(48px);
+  background-color: rgb(var(--material));
+  overflow: hidden;
+
+  &.active {
+    pointer-events: none;
+    background-color: var(--primary);
+  }
+
+  @include hover {
+    &:hover {
+      background-color: rgb(var(--material-hover));
+    }
+  }
+}
+
+.text {
+  font-size: rem(14px);
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+}

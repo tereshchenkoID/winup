@@ -1,0 +1,21 @@
+.block {
+  padding-block: var(--gap-32);
+  text-align: center;
+
+  .picture {
+    --size: rem(100px);
+
+    margin-inline: auto;
+    font-size: rem(100px);
+    color: var(--primary-hover);
+  }
+}
+
+.title {
+  margin-block-end: var(--gap-default);
+}
+
+.subtitle {
+  font-size: rem(14px);
+  color: var(--sub-text);
+}

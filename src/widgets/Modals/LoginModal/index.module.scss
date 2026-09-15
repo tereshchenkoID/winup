@@ -1,0 +1,21 @@
+.block {
+  display: grid;
+  gap: var(--gap-24);
+  text-align: center;
+}
+
+.title {
+  font-size: rem(20px);
+}
+
+.container {
+  display: grid;
+  gap: var(--gap-12);
+}
+
+.link {
+  @include flex($justify-content: center, $wrap: wrap);
+
+  gap: var(--gap-4);
+  font-size: rem(14px);
+}

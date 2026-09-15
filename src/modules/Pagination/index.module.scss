@@ -1,0 +1,5 @@
+.block {
+  @include flex(center, center);
+
+  gap: var(--gap-default);
+}

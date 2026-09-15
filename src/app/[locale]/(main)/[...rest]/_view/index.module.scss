@@ -1,0 +1,11 @@
+.content {
+  @include flex($align-items: flex-start, $direction: column);
+
+  gap: var(--gap-16);
+}
+
+.subtitle {
+  font-size: rem(76px);
+  line-height: 1;
+  color: rgb(var(--link));
+}

@@ -1,0 +1,12 @@
+.mask {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  gap: var(--gap-default);
+}
+
+.hidden {
+  font-weight: var(--typography-bold);
+  color: rgb(var(--link));
+  cursor: pointer;
+}

@@ -1,0 +1,18 @@
+.block {
+  --slide-width: 12.5rem; // 200px
+  --slide-spacing: var(--gap-default);
+}
+
+.skeleton {
+  --skeleton-cols: 2;
+  --skeleton-rows: 1;
+  --skeleton-height: 4.625rem; // 74px
+
+  @include mob-m {
+    --skeleton-cols: 3;
+  }
+
+  @include tab-m {
+    --skeleton-cols: 5;
+  }
+}

@@ -1,0 +1,32 @@
+.block {
+  --slide-width: 20.5rem; // 328px
+  --slide-spacing: var(--gap-default);
+}
+
+.skeleton {
+  --skeleton-rows: 1;
+
+  &.top {
+    --skeleton-cols: 1;
+    --skeleton-height: 2rem; // 32px
+
+    margin-block-end: var(--gap-default);
+  }
+
+  &.bottom {
+    --skeleton-cols: 1;
+    --skeleton-height: 28.125rem; // 450px
+
+    @include mob-m {
+      --skeleton-cols: 2;
+    }
+
+    @include tab-s {
+      --skeleton-cols: 3;
+    }
+
+    @include desk-s {
+      --skeleton-cols: 4;
+    }
+  }
+}

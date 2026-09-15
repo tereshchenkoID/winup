@@ -1,0 +1,24 @@
+.list {
+  --count: 2;
+
+  display: grid;
+  grid-template-columns: repeat(var(--count), 1fr);
+  align-items: center;
+  gap: var(--gap-default);
+
+  @include mob-m {
+    --count: 3;
+  }
+
+  @include tab-s {
+    --count: 4;
+  }
+
+  @include tab-l {
+    --count: 5;
+  }
+
+  @include desk-s {
+    --count: 6;
+  }
+}

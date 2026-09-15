@@ -1,0 +1,44 @@
+.block {
+  --slide-width: fit-content;
+  --slide-spacing: var(--gap-default);
+}
+
+.toggle {
+  @include flex(null, center);
+
+  gap: var(--gap-6);
+  padding: var(--gap-default) var(--gap-16);
+  border: rem(1px) solid var(--primary-hover);
+  border-radius: var(--border-radius-full);
+  height: rem(48px);
+  background-color: rgb(var(--material));
+  overflow: hidden;
+  font-size: rem(14px);
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+
+  @include hover {
+    &:hover {
+      background-color: rgb(var(--material-hover));
+    }
+  }
+}
+
+.skeleton {
+  --skeleton-cols: 3;
+  --skeleton-rows: 1;
+  --skeleton-height: 3rem; // 48px
+
+  @include mob-m {
+    --skeleton-cols: 4;
+  }
+
+  @include tab-m {
+    --skeleton-cols: 5;
+  }
+
+  @include desk-s {
+    --skeleton-cols: 6;
+  }
+}

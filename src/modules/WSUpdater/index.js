@@ -1,0 +1,62 @@
+'use client'
+
+import { useEffect } from 'react'
+import { useTranslations } from 'next-intl'
+
+import { useRouter } from '@/i18n/navigation'
+
+import { useWebSocketContext } from '@/context/WebSocketContext'
+import useModal from '@/hooks/useModal'
+import { useUser, useUserStore } from '@/hooks/useUser'
+
+const WSUpdater = ({ settings }) => {
+  const t = useTranslations()
+  const { isAuth, profile } = useUser()
+  const router = useRouter()
+  const { lastMessage } = useWebSocketContext()
+  const { openModal } = useModal()
+  const updateUser = useUserStore((state) => state.updateUser)
+
+  useEffect(() => {
+    if (!lastMessage) return
+
+    const { cmd, data, topic } = lastMessage
+
+    if (cmd === 'update' && topic === 'credits') {
+      updateUser(data)
+    }
+
+    if (cmd === 'update' && topic === 'message') {
+      openModal('notification', { data }, { title: data?.title || '' })
+    }
+
+    if (topic === 'analytics') {
+      window.dataLayer.push(data)
+    }
+  }, [lastMessage, router, openModal, updateUser])
+
+  useEffect(() => {
+    const hasBirthday = profile?.birthday
+    const hasAgeSession = typeof window !== 'undefined' && localStorage.getItem('age') === '1'
+
+    let shouldShowModal = false
+
+    if (isAuth) {
+      if (!hasBirthday && !hasAgeSession) {
+        shouldShowModal = true
+      }
+    } else {
+      if (!hasAgeSession) {
+        shouldShowModal = true
+      }
+    }
+
+    if (shouldShowModal) {
+      openModal('age', { link: settings?.over18_url }, { title: t('age.title'), isPointer: true })
+    }
+  }, [t, openModal, profile?.birthday, isAuth, settings?.over18_url])
+
+  return null
+}
+
+export default WSUpdater

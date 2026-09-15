@@ -1,0 +1,42 @@
+.form {
+  display: grid;
+  gap: var(--gap-24);
+  margin-inline: auto;
+  padding: var(--gap-24);
+  border-radius: var(--border-radius-16);
+  width: 100%;
+  background-color: rgb(var(--material));
+  overflow: hidden;
+  text-align: center;
+
+  @include tab-s {
+    max-width: rem(460px);
+  }
+}
+
+.title {
+  font-size: rem(20px);
+}
+
+.container {
+  display: grid;
+  gap: var(--gap-12);
+}
+
+.link {
+  @include flex($justify-content: center, $wrap: wrap);
+
+  gap: var(--gap-4);
+  font-size: rem(14px);
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-content: center;
+  gap: var(--gap-default);
+}
+
+.divider {
+  margin-block: var(--gap-default);
+}

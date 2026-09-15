@@ -1,0 +1,74 @@
+import { Suspense } from 'react'
+
+import { redirect } from '@/i18n/navigation'
+
+import { NAVIGATION } from '@/constant/config'
+
+import { apiRequest } from '@/app/actions/api'
+import { getPageMetadata } from '@/app/actions/metadata'
+import { getCachedUser } from '@/app/actions/static'
+
+import SeoSection from '@/sections/SectionSeo'
+
+import Section from './_view'
+
+export async function generateMetadata() {
+  return await getPageMetadata('registration')
+}
+
+export default async function Promotions({ params }) {
+  const { locale } = await params
+
+  const [
+    metaTags,
+    user,
+    countries,
+  ] = await Promise.all([
+    getPageMetadata('registration'),
+    getCachedUser(),
+    apiRequest('countries/', {
+      method: 'GET',
+    }),
+  ])
+
+  if (user?.id) {
+    redirect({
+      href: '/',
+      locale
+    })
+  }
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    'name': metaTags?.title,
+    'url': process.env.BASE_URL,
+    'description': metaTags?.description,
+    'publisher': {
+      '@type': 'Organization',
+      'name': process.env.ORGANIZATION_NAME,
+      'logo': {
+        '@type': 'ImageObject',
+        'url': process.env.ORGANIZATION_LOGO
+      }
+    },
+    'potentialAction': {
+      '@type': 'SearchAction',
+      'target': `${process.env.BASE_URL}`,
+      'query-input': 'required name=search_term_string'
+    }
+  }
+
+  return (
+    <>
+      <Suspense fallback={null}>
+        <Section countries={countries?.data} />
+      </Suspense>
+      <SeoSection alias={'registration'} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+    </>
+  )
+}

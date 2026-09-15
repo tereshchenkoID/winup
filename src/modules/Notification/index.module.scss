@@ -1,0 +1,24 @@
+.block {
+  padding: var(--gap-4) var(--gap-default);
+  border: rem(1px) solid rgb(var(--notification-color));
+  border-radius: var(--border-radius-default);
+  background-color: rgb(var(--notification-color) / 10%);
+  font-size: rem(12px);
+  color: rgb(var(--notification-color));
+
+  &.error {
+    --notification-color: var(--red);
+  }
+
+  &.info {
+    --notification-color: var(--blue);
+  }
+
+  &.warning {
+    --notification-color: var(--amber);
+  }
+
+  &.success {
+    --notification-color: var(--green);
+  }
+}

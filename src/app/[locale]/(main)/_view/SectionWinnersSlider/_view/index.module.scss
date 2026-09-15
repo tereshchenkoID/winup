@@ -1,0 +1,32 @@
+.block {
+  --slide-width: 19rem; // 304px
+  --slide-spacing: var(--gap-default);
+
+  &::after {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-end: rem(-1px);
+    width: rem(64px);
+    background: linear-gradient(90deg, transparent 0%, rgb(var(--bg)) 100%);
+    z-index: $z-index-1;
+    content: '';
+  }
+}
+
+.skeleton {
+  --skeleton-rows: 1;
+  --skeleton-cols: 1;
+  --skeleton-height: 6.875rem; // 110px
+
+  @include mob-m {
+    --skeleton-cols: 2;
+  }
+
+  @include tab-s {
+    --skeleton-cols: 3;
+  }
+
+  @include desk-s {
+    --skeleton-cols: 4;
+  }
+}

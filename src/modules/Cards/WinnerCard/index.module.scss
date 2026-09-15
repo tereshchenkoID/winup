@@ -1,0 +1,83 @@
+.block {
+  @include size(rem(304px), rem(110px));
+
+  display: grid;
+  flex-shrink: 0;
+  grid-template-columns: 1fr rem(88px);
+  position: relative;
+  border-radius: var(--border-radius-10);
+  background-color: rgb(var(--material));
+  overflow: hidden;
+
+  @include hover {
+    &:hover {
+      .hidden {
+        transform: translateX(0);
+      }
+    }
+  }
+}
+
+.action {
+  @include absolute-filled;
+
+  z-index: $z-index-1;
+
+  @include desk-s {
+    display: none;
+  }
+}
+
+.info,
+.hidden {
+  position: relative;
+  padding: var(--gap-16);
+}
+
+.info {
+  position: relative;
+  overflow: hidden;
+}
+
+.hidden {
+  @include flex($justify-content: space-between, $direction: column);
+  @include transition;
+
+  position: absolute;
+  inset: 0;
+  background-color: rgb(var(--material));
+  transform: translateX(100%);
+}
+
+.title {
+  font-size: rem(12px);
+}
+
+.image {
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.winnings {
+  @include flex(null, baseline);
+
+  gap: var(--gap-4);
+  margin-block-end: var(--gap-default);
+}
+
+.currency {
+  font-size: rem(12px);
+  color: var(--sub-text);
+
+  strong {
+    color: rgb(var(--text-for-brand));
+  }
+}
+
+.player {
+  @include flex(null, center);
+
+  gap: var(--gap-6);
+  font-size: rem(12px);
+}

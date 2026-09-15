@@ -1,0 +1,40 @@
+.block {
+  @include flex(center, center);
+
+  gap: var(--gap-default);
+  padding: var(--gap-default) var(--gap-16);
+  border: rem(1px) solid var(--primary-hover);
+  border-radius: var(--border-radius-10);
+  background-color: rgb(var(--material));
+  overflow: hidden;
+  font-size: rem(14px);
+
+  @include hover {
+    &:hover {
+      background-color: rgb(var(--material-hover));
+    }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.picture {
+  @include size(rem(60px), rem(30px));
+
+  flex-shrink: 0;
+  position: relative;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--gap-default);
+  width: 100%;
+}
+
+.count {
+  color: rgb(var(--link));
+}

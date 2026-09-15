@@ -1,0 +1,52 @@
+'use client'
+
+import Image from 'next/image'
+
+import { Link } from '@/i18n/navigation'
+
+import { imageError } from '@/helpers/image'
+
+import style from './index.module.scss'
+
+const SectionMainBannerSlider = ({ mock }) => {
+  const { title, data } = mock
+  const { link, mob, desk } = data
+
+  if (!link) return null
+
+  return (
+    <Link
+      href={link}
+      className={style.block}
+    >
+      <Image
+        src={mob}
+        alt={title}
+        className={style.mob}
+        width={664}
+        height={570}
+        priority
+        fetchPriority="high"
+        loading="eager"
+        sizes="(max-width: 560px) 100vw, 1px"
+        decoding="async"
+        onError={(e) => imageError(e, false)}
+      />
+      <Image
+        src={desk}
+        alt={title}
+        className={style.desk}
+        width={1184}
+        height={216}
+        priority
+        fetchPriority="high"
+        loading="eager"
+        sizes="(max-width: 560px) 1px, (max-width: 1920px) 100vw, 1184px"
+        decoding="async"
+        onError={(e) => imageError(e, false)}
+      />
+    </Link>
+  )
+}
+
+export default SectionMainBannerSlider

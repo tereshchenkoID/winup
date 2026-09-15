@@ -1,0 +1,30 @@
+.block {
+  @include size(100%, calc(var(--skeleton-height) * var(--skeleton--rows) + var(--skeleton-gap, var(--gap-default)) * (var(--skeleton-rows) - 1)));
+
+  display: grid;
+  grid-template-columns: repeat(var(--skeleton-cols, 1), 1fr);
+  grid-template-rows: repeat(var(--skeleton-rows, 1), var(--skeleton-height));
+  grid-auto-rows: 0;
+  gap: var(--skeleton-gap, var(--gap-default));
+  overflow: hidden;
+}
+
+.item {
+  @include size(100%);
+
+  border-radius: var(--border-radius-6);
+  min-height: 0;
+  background: linear-gradient(90deg, rgb(0 0 0 / 10%) 0, rgb(var(--bg)) 25%, rgb(0 0 0 / 20%) 50%) 100% / 200% 100%;
+  background-color: rgb(var(--material));
+  animation: skeleton 2s linear infinite;
+}
+
+@keyframes skeleton {
+  0% {
+    background-position: 100%;
+  }
+
+  100% {
+    background-position: -100%;
+  }
+}

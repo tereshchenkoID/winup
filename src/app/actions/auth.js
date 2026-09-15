@@ -1,0 +1,71 @@
+'use server'
+
+import { cookies } from 'next/headers'
+
+import { apiRequest } from '@/app/actions/api'
+import { getCachedUser } from '@/app/actions/static'
+
+const saveSession = async (token) => {
+  if (!token) return
+
+  const cookieStore = await cookies()
+  cookieStore.set('NEXT_SID', token, {
+    httpOnly: true,
+    path: '/',
+    sameSite: 'lax',
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 60 * 60 * 24 * 30 // 30 days
+  })
+}
+
+export const registerWithCredentialsAction = async (filterData) => {
+  const data = await apiRequest('registration/', {
+    method: 'POST',
+    params: {
+      data: JSON.stringify(filterData)
+    },
+  })
+
+  if (data?.token) {
+    await saveSession(data.token)
+  }
+
+  return data
+}
+
+export const loginWithTelegramAction = async (telegramUser) => {
+  const data = await apiRequest('telegraf/', {
+    method: 'POST',
+    params: {
+      data: telegramUser
+    },
+  })
+
+  if (data?.token) {
+    await saveSession(data?.token)
+  }
+
+  return data
+}
+
+export const loginWithCredentialsAction = async (username, password) => {
+  const data = await apiRequest('login/', {
+    method: 'POST',
+    params: { username, password },
+  })
+
+  if (data?.token) {
+    await saveSession(data.token)
+  }
+
+  return data
+}
+
+export const logoutAction = async () => {
+  await apiRequest('logout/', { method: 'GET' }).catch(() => {})
+  const cookieStore = await cookies()
+  cookieStore.delete('NEXT_SID')
+
+  const user = await getCachedUser()
+  return { success: true, user }
+}

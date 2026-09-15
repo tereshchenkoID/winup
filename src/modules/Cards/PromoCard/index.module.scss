@@ -1,0 +1,63 @@
+.block {
+  height: 100%;
+
+  @include hover {
+    &:hover {
+      .image {
+        transform: scale(1.01);
+      }
+    }
+  }
+}
+
+.wrapper {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  position: relative;
+  border-radius: var(--border-radius-default);
+  height: 100%;
+  background-color: rgb(var(--material));
+  overflow: hidden;
+}
+
+.picture {
+  position: relative;
+  aspect-ratio: 19 / 9;
+  height: 100%;
+}
+
+.image {
+  @include transition;
+
+  height: 100%;
+  object-fit: cover;
+}
+
+.content {
+  @include flex(flex-end, null, column);
+
+  gap: var(--gap-2);
+  padding: var(--gap-12);
+  background-color: rgb(var(--material));
+}
+
+.badges {
+  @include flex(flex-end, null, null,  wrap);
+
+  gap: var(--gap-4);
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  padding: var(--gap-default);
+}
+
+.link {
+  margin-block: auto 0;
+  align-self: flex-end;
+}
+
+.text {
+  @include line-clamp(3);
+
+  font-size: rem(14px);
+}

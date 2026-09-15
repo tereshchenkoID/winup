@@ -1,0 +1,30 @@
+.block {
+  @include size(rem(8px));
+
+  display: inline-flex;
+  border: rem(1px) solid rgb(var(--material));
+  border-radius: 50%;
+  background-color: rgb(var(--notification-color));
+
+  &-1 {
+    --notification-color: var(--red);
+  }
+
+  &-2 {
+    --notification-color: var(--yellow);
+  }
+
+  &-3 {
+    --notification-color: var(--green);
+  }
+
+  &.default {
+    position: absolute;
+    inset-block-end: 0;
+    inset-inline-end: 0;
+  }
+
+  &.md {
+    @include size(rem(10px));
+  }
+}

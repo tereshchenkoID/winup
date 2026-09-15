@@ -1,0 +1,12 @@
+.content {
+  padding: var(--gap-16);
+  border-radius: var(--border-radius-10);
+  background-color: rgb(var(--material));
+  overflow: hidden;
+}
+
+.image {
+  margin-block-end: var(--gap-16);
+  border-radius: var(--gap-6);
+  object-fit: cover;
+}

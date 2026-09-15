@@ -1,0 +1,58 @@
+{
+  "name": "winup",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "stylelint": "stylelint \"src/**/*.scss\"",
+    "stylelint:fix": "stylelint \"src/**/*.scss\" --fix",
+    "analyze": "ANALYZE=true next build --webpack",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,mjs,cjs}": "eslint --max-warnings=10",
+    "*.scss": "stylelint --allow-empty-input"
+  },
+  "dependencies": {
+    "@next/third-parties": "^16.3.0",
+    "browser-image-compression": "^2.0.2",
+    "clsx": "^2.1.1",
+    "keen-slider": "^6.8.6",
+    "next": "^16.3.0",
+    "next-intl": "^4.13.0",
+    "nextjs-toploader": "^3.9.17",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-international-phone": "^4.8.0",
+    "react-toastify": "^11.1.0",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^21.2.2",
+    "@commitlint/config-conventional": "^21.2.2",
+    "@next/bundle-analyzer": "^16.3.3",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@stylistic/stylelint-plugin": "^5.3.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "critters": "^0.0.23",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.0",
+    "eslint-plugin-simple-import-sort": "^14.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.4.1",
+    "sass": "^1.100.0",
+    "stylelint": "^17.14.1",
+    "stylelint-config-standard-scss": "^17.0.0",
+    "stylelint-order": "^8.1.1"
+  },
+  "allowScripts": {
+    "@parcel/watcher": true,
+    "@swc/core@1.15.46": true,
+    "unrs-resolver@1.12.2": true
+  }
+}

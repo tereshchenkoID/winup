@@ -1,0 +1,10 @@
+.block {
+  display: grid;
+  flex-shrink: 0;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap-default);
+
+  & > :only-child {
+    grid-column: 1 / -1;
+  }
+}

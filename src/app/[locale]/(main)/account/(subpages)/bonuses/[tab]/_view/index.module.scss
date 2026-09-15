@@ -1,0 +1,19 @@
+.section {
+  min-height: rem(200px);
+}
+
+.list {
+  --bonus-count: 1;
+
+  display: grid;
+  grid-template-columns: repeat(var(--bonus-count), 1fr);
+  gap: var(--gap-default);
+
+  @include tab-s {
+    --bonus-count: 2;
+  }
+
+  @include desk-s {
+    --bonus-count: 3;
+  }
+}

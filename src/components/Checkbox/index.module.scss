@@ -1,0 +1,80 @@
+.block {
+  @include flex(null, flex-start);
+
+  gap: var(--gap-default);
+  position: relative;
+  cursor: pointer;
+
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &.error {
+    .item {
+      border-color: rgb(var(--red));
+    }
+
+    .text {
+      color: rgb(var(--red));
+    }
+  }
+
+  &:not(.error, .disabled) {
+    @include hover {
+      &:hover {
+        .item {
+          border-color: rgb(var(--brand));
+        }
+      }
+    }
+  }
+}
+
+.text {
+  @include transition;
+
+  font-size: rem(14px);
+  line-height: 1.1;
+  text-align: start;
+  color: rgb(var(--text-for-material));
+}
+
+.input {
+  @include size(0);
+
+  position: absolute;
+  opacity: 0;
+
+  &:checked ~ {
+    .item {
+      border-color: rgb(var(--brand));
+      background-color: rgb(var(--brand));
+
+      svg {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.item {
+  @include flex(center, center);
+  @include transition;
+  @include size(rem(20px));
+
+  flex-shrink: 0;
+  border: rem(1px) solid rgb(var(--tertiary));
+  border-radius: var(--border-radius-4);
+
+  svg {
+    opacity: 0;
+  }
+}
+
+.message {
+  margin-block-start: var(--gap-2);
+  font-size: rem(12px);
+  text-align: left;
+  color: rgb(var(--red));
+}

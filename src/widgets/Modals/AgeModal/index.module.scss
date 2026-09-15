@@ -1,0 +1,17 @@
+.block {
+  display: grid;
+  gap: var(--gap-24);
+  text-align: center;
+}
+
+.container {
+  display: grid;
+  gap: var(--gap-12);
+}
+
+.link {
+  @include flex(center, $wrap: wrap);
+
+  gap: var(--gap-4);
+  font-size: rem(14px);
+}

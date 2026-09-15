@@ -1,0 +1,122 @@
+.block {
+  @include flex(center, flex-end);
+
+  position: fixed;
+  inset: 0;
+  padding-block-start: var(--tg-safe-top);
+  z-index: $z-index-9;
+
+  @include tab-s {
+    align-items: center;
+    padding: calc(var(--tg-safe-top) + var(--gap-16)) var(--gap-16);
+  }
+
+  &.sm {
+    .content {
+      @include tab-s {
+        max-width: rem(400px);
+      }
+    }
+  }
+
+  &.md {
+    .content {
+      @include tab-s {
+        max-width: rem(600px);
+      }
+    }
+  }
+
+  &.lg {
+    .content {
+      height: 100%;
+
+      @include tab-s {
+        max-width: rem(800px);
+      }
+    }
+  }
+
+  &.tiny {
+    .content {
+      @include tab-s {
+        width: fit-content;
+        min-width: auto;
+      }
+    }
+
+    .body {
+      padding: 0;
+
+      @include tab-s {
+        overflow-y: unset;
+      }
+    }
+
+    .wrapper {
+      grid-template-rows: auto;
+    }
+  }
+
+  &.lock {
+    .shadow {
+      pointer-events: none;
+    }
+  }
+}
+
+.header {
+  @include flex(center, flex-start);
+
+  flex-shrink: 0;
+  position: relative;
+  padding: var(--gap-16) rem(50px);
+}
+
+.title {
+  text-align: center;
+  text-transform: uppercase;
+  color: rgb(var(--text-for-material));
+}
+
+.shadow {
+  position: absolute;
+  inset: 0;
+  background-color: var(--material-disabled);
+  backdrop-filter: blur(4px);
+}
+
+.content {
+  @include flex;
+
+  border-radius: var(--border-radius-16) var(--border-radius-16) 0 0;
+  width: 100%;
+  min-width: rem(320px);
+  max-height: 100%;
+  background-color: rgb(var(--material));
+  overflow: hidden;
+  z-index: $z-index-1;
+  color: rgb(var(--text-for-material));
+
+  @include tab-s {
+    border-radius: var(--border-radius-16);
+    min-width: rem(400px);
+  }
+}
+
+.wrapper {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  width: 100%;
+}
+
+.close {
+  position: absolute;
+  inset-inline-end: var(--gap-12);
+}
+
+.body {
+  @include scroll-y;
+
+  padding: var(--gap-12) var(--gap-24) var(--gap-24);
+}

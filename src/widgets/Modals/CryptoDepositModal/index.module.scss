@@ -1,0 +1,9 @@
+.block {
+  @include size(100%);
+}
+
+.iframe {
+  @include size(100%);
+
+  display: block;
+}

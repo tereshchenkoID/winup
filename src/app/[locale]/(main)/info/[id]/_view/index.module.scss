@@ -1,0 +1,13 @@
+.block {
+  position: relative;
+
+  h1 {
+    padding-inline-start: rem(48px);
+  }
+}
+
+.button {
+  position: absolute;
+  inset-block-start: var(--gap-2);
+  z-index: $z-index-1;
+}

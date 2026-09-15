@@ -1,0 +1,33 @@
+.block {
+  width: 100%;
+
+  &.inverted {
+    .scale {
+      background-color: var(--material-disabled);
+    }
+  }
+}
+
+.header {
+  @include flex(space-between, center);
+
+  gap: var(--gap-4);
+  margin-block-end: var(--gap-4);
+  font-size: rem(12px);
+}
+
+.scale {
+  @include size(100%, rem(8px));
+
+  position: relative;
+  border-radius: var(--border-radius-2);
+  background-color: rgb(var(--material));
+  overflow: hidden;
+}
+
+.value {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  background-color: rgb(var(--link));
+}

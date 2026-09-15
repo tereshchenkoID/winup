@@ -1,0 +1,154 @@
+.block {
+  @include size(100%);
+  @include flex($direction: column);
+  @include scroll-y;
+
+  position: fixed;
+  inset-block: calc(var(--tg-safe-top) + var(--header-height)) var(--aside-height);
+  inset-inline: auto 0;
+  max-height: calc(100svh - var(--tg-safe-top) - var(--header-height) - var(--aside-height));
+  background-color: rgb(var(--material));
+
+  @include tab-s {
+    @include size(rem(320px), auto);
+
+    border: rem(1px) solid var(--tertiary-disabled);
+    border-radius: var(--border-radius-16);
+    max-height: unset;
+  }
+
+  @include desk-s {
+    position: absolute;
+    inset-block: calc(100% + var(--gap-default)) auto;
+  }
+}
+
+.top,
+.center,
+.bottom {
+  padding: var(--gap-12);
+}
+
+.top {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: var(--gap-12);
+  border-bottom: rem(1px) solid var(--tertiary-disabled);
+}
+
+.bottom {
+  margin-block-start: auto;
+  border-top: rem(1px) solid var(--tertiary-disabled);
+}
+
+.center {
+  display: grid;
+  gap: var(--gap-16)
+}
+
+.avatar {
+  @include size(rem(40px));
+
+  position: relative;
+  border-radius: 50%;
+  background-color: rgb(var(--material-hover));
+
+  img {
+    border-radius: 50%;
+    overflow: hidden;
+  }
+}
+
+.nickname {
+  font-size: rem(12px);
+}
+
+.container {
+  border-radius: var(--border-radius-default);
+  background-color: rgb(var(--material-hover));
+  font-size: rem(13px);
+}
+
+.info,
+.level,
+.link {
+  gap: var(--gap-default);
+  padding: var(--gap-default);
+
+  &:not(:last-child) {
+    border-bottom: rem(1px) solid var(--tertiary-disabled);
+  }
+
+  @include hover {
+    &:hover {
+      color: rgb(var(--link));
+    }
+  }
+}
+
+.info,
+.amount {
+  @include flex(space-between, center);
+
+  width: 100%;
+}
+
+.info {
+  &.column {
+    flex-direction: column;
+  }
+}
+
+.level {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  border-radius: inherit;
+
+  &-1 {
+    --level-color: rgb(var(--red));
+  }
+
+  &-2 {
+    --level-color: rgb(var(--amber));
+  }
+
+  &-3 {
+    --level-color: rgb(var(--green));
+  }
+
+  span {
+    display: block;
+
+    &:last-child {
+      color: var(--level-color);
+    }
+  }
+}
+
+.link {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap-default);
+  padding: var(--gap-default);
+}
+
+.count {
+  @include flex($align-items: baseline);
+
+  gap: var(--gap-4);
+}
+
+.text {
+  @include flex(null, center);
+
+  gap: var(--gap-4);
+  position: relative;
+}

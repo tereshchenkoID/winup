@@ -1,0 +1,79 @@
+.block {
+  position: relative;
+  max-width: rem(306px);
+  height: fit-content;
+}
+
+.button {
+  position: relative;
+  padding: rem(1px);
+  border-radius: var(--border-radius-16);
+  width: 100%;
+  text-align: start;
+  white-space: nowrap;
+  word-break: break-all
+}
+
+.content {
+  @include flex($direction: column);
+
+  flex-grow: 1;
+  gap: rem(6px);
+  position: relative;
+  padding: rem(12px) rem(20px);
+  border-radius: var(--border-radius-16);
+  height: rem(120px);
+  background: no-repeat radial-gradient(circle 17px at -4px 50%, transparent 99.9%, var(--primary)) top left -1px / 50% 100%, no-repeat radial-gradient(circle 17px at calc(100% + 4px) 50%, transparent 99.9%, var(--primary)) top right -1px / calc(50% + 2px) 100%;
+  z-index: $z-index-2;
+  line-height: 1;
+}
+
+.title,
+.amount,
+.date {
+  display: grid;
+  align-items: center;
+  gap: var(--gap-default);
+}
+
+.amount,
+.date {
+  grid-template-columns: 1fr 2fr;
+}
+
+.title {
+  grid-template-columns: 1fr 2fr auto;
+}
+
+.amount {
+  margin-block: 0 auto;
+}
+
+.code {
+  white-space: pre-wrap;
+}
+
+.date {
+  font-size: rem(12px);
+}
+
+.label {
+  display: inline-flex;
+  margin-inline-end: rem(5px);
+  min-width: rem(100px);
+  font-family: var(--font-family), sans-serif!important;
+  font-size: rem(12px);
+}
+
+.status {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  opacity: 0.3;
+  transform: translate(-50%, -50%) rotateZ(-25deg);
+  font-size: rem(50px);
+  font-weight: var(--typography-bold);
+  text-transform: uppercase;
+  color: rgb(var(--green));
+  white-space: nowrap;
+}

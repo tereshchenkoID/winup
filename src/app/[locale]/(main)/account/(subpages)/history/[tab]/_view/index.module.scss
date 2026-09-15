@@ -1,0 +1,29 @@
+.section {
+  display: grid;
+  gap: var(--gap-16);
+  min-height: rem(200px);
+}
+
+.header {
+  @include flex(flex-end);
+}
+
+.footer {
+  @include flex(space-between, center, column-reverse, wrap);
+
+  gap: var(--gap-16);
+  margin-block-start: var(--gap-16);
+
+  @include mob-m {
+    flex-direction: row;
+  }
+}
+
+.container {
+  position: relative;
+  min-height: rem(100px);
+}
+
+.select {
+  width: rem(80px);
+}

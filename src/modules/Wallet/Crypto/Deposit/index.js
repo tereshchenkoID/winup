@@ -1,0 +1,67 @@
+'use client'
+
+import { useTransition } from 'react'
+import { useSearchParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
+
+import { useFilterState } from '@/hooks/useFilterState'
+import useModal from '@/hooks/useModal'
+import { useUser } from '@/hooks/useUser'
+import { toast } from '@/utils/toast'
+
+import Action from '@/components/Action'
+import Field from '@/components/Field'
+
+import { action } from './action'
+
+import style from './index.module.scss'
+
+const INITIAL_FILTER = { amount: '' }
+
+const Deposit = () => {
+  const t = useTranslations()
+  const { openModal } = useModal()
+  const { level, currency } = useUser()
+  const searchParams = useSearchParams()
+  const bonus = searchParams.get('bonus')
+
+  const [isPending, startTransition] = useTransition()
+
+  const { filter, setFilter, handlePropsChange } = useFilterState(INITIAL_FILTER)
+
+  const handleSubmit = async (e) => {
+    e && e.preventDefault()
+
+    startTransition(async () => {
+      const res = await action(filter.amount, currency, bonus)
+
+      if (res?.code === '0') {
+        openModal('cryptoDeposit', { data: res.link }, { title: t('deposit'), size: 'lg' })
+        setFilter(INITIAL_FILTER)
+      }
+      else {
+        toast.error(res?.error_message || t('error'))
+      }
+    })
+  }
+
+  return (
+    <form className={style.block} onSubmit={handleSubmit}>
+      <Field
+        type={'number'}
+        placeholder={t('amount')}
+        data={filter.amount}
+        onChange={value => handlePropsChange('amount', value)}
+        isRequired={true}
+      />
+      <Action
+        type={'submit'}
+        classes={['primary', 'lg']}
+        placeholder={t('deposit')}
+        isDisabled={level === '1' || filter?.amount === '' || isPending}
+      />
+    </form>
+  )
+}
+
+export default Deposit

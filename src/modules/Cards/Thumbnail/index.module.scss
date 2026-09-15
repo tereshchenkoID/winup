@@ -1,0 +1,121 @@
+.block {
+  display: grid;
+  position: relative;
+  aspect-ratio: 1 / 1.12;
+  border: rem(1px) solid var(--primary);
+  border-radius: var(--border-radius-10);
+  overflow: hidden;
+  cursor: pointer;
+
+  @include desk-s {
+    @include hover {
+      &:hover {
+        .details {
+          border-radius: inherit;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &.empty {
+    .details {
+      display: none;
+    }
+
+    .action {
+      display: block;
+    }
+  }
+
+  &.numeric {
+    .title {
+      padding-inline: var(--gap-default);
+      text-align: center;
+      -webkit-line-clamp: 3;
+    }
+  }
+}
+
+.action {
+  @include absolute-filled;
+
+  z-index: $z-index-2;
+
+  @include desk-s {
+    display: none;
+  }
+}
+
+.image {
+  position: relative;
+  object-fit: cover;
+  height: 100%;
+  object-position: 50% 50%;
+}
+
+.details {
+  @include transition;
+
+  display: none;
+  position: absolute;
+  inset: 0;
+  padding: var(--gap-12);
+  background-position: 50% 0;
+  background-size: cover;
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  z-index: $z-index-1;
+
+  &::before {
+    position: absolute;
+    inset: 0;
+    background: rgb(var(--bg));
+    mask-image: linear-gradient(180deg, transparent, rgb(0 0 0 / 40%) 10%, rgb(0 0 0 / 80%) 70%, rgb(var(--bg)));
+    content: '';
+  }
+
+  @include tab-s {
+    display: grid;
+  }
+}
+
+.header {
+  @include flex(space-between);
+
+  position: absolute;
+  inset-block-start: var(--gap-default);
+  inset-inline: var(--gap-default);
+  z-index: $z-index-1;
+}
+
+.actions {
+  display: grid;
+  justify-items: center;
+  gap: var(--gap-6);
+  position: absolute;
+  inset-block-start: 22%;
+  inset-inline: 0;
+}
+
+.content {
+  display: grid;
+  grid-area: 1 / 1 / 1 / -1;
+  align-content: flex-end;
+  gap: var(--gap-default);
+  position: relative;
+}
+
+.title {
+  @include line-clamp(1);
+
+  font-family: var(--font-family-alt), sans-serif;
+  font-size: rem(14px);
+  line-height: 1.2;
+}
+
+.tags {
+  @include flex($wrap: wrap);
+
+  gap: var(--gap-4);
+}
